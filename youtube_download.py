@@ -1,4 +1,9 @@
+#pip install pytube
+#pip install pyttsx3
 import json
+import pytube
+import pyttsx3
+engine = pyttsx3.init()
 from urllib.parse import parse_qs, unquote
 def apply_descrambler(stream_data, key):
     otf_type = "FORMAT_STREAM_TYPE_OTF"
@@ -47,7 +52,6 @@ def apply_descrambler(stream_data, key):
             for i in stream_data[key].split(",")
         ]
 
-import pytube
 pytube.__main__.apply_descrambler = apply_descrambler
 
 url = input('Please enter/paste your youtube link:- ')
@@ -57,7 +61,9 @@ a = 0
 for i in stream:
     a += 1
     print(a,'] ',i)
-
+n = input("Please slect the option you want to download")
 video = stream[n-1]
-video.download('C:\\Users\\himan\\Downloads')
-print('Download is finished')
+video.download()
+print('Finished')
+engine.say("Hello Sir your work is completed")
+engine.runAndWait()
